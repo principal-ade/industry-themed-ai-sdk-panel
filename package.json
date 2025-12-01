@@ -1,6 +1,6 @@
 {
   "name": "@principal-ade/industry-themed-ai-sdk-panel",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Industry-themed AI chat panel with configurable AI providers",
   "type": "module",
   "main": "dist/panels.bundle.js",
