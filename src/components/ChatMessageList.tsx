@@ -27,12 +27,19 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ messages, them
     );
   }
 
+  // Check if the last message is an assistant message (streaming in progress)
+  const lastMessage = messages[messages.length - 1];
+  const isStreamingAssistant = lastMessage?.role === 'assistant';
+
+  // Only show loading indicator if loading AND no assistant message is streaming yet
+  const showLoadingIndicator = isLoading && !isStreamingAssistant;
+
   return (
     <div className="chat-message-list">
       {messages.map((message, index) => (
         <ChatMessage key={message.id || index} message={message} theme={theme} />
       ))}
-      {isLoading && (
+      {showLoadingIndicator && (
         <div className="chat-message" data-role="assistant">
           <div className="message-header">
             <span className="message-role">assistant</span>
