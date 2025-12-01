@@ -33,6 +33,7 @@ export default defineConfig(({ mode }) => ({
         'react-dom',
         'react/jsx-runtime',
         'ai',
+        '@ai-sdk/react',
         '@principal-ade/industry-theme',
         '@principal-ade/panel-framework-core',
         'react-markdown',

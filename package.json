@@ -37,7 +37,7 @@
   "scripts": {
     "build": "bun run clean && bun run build:panel && bun run build:esm && bun run build:types && bun run build:styles",
     "build:panel": "vite build",
-    "build:esm": "esbuild src/panel.tsx --bundle --format=esm --outfile=dist/index.mjs --external:react --external:react-dom --external:ai --external:@principal-ade/industry-theme --external:@principal-ade/panel-framework-core --external:react-markdown --external:react-syntax-highlighter --external:lucide-react",
+    "build:esm": "esbuild src/panel.tsx --bundle --format=esm --outfile=dist/index.mjs --external:react --external:react-dom --external:ai --external:@ai-sdk/react --external:@principal-ade/industry-theme --external:@principal-ade/panel-framework-core --external:react-markdown --external:react-syntax-highlighter --external:lucide-react",
     "build:types": "tsc --project tsconfig.build.json --emitDeclarationOnly --declaration --declarationMap",
     "build:styles": "cp src/styles/ai-chat-theme.css dist/styles.css",
     "dev": "vite build --watch",
@@ -53,7 +53,8 @@
     "build-storybook": "storybook build"
   },
   "peerDependencies": {
-    "ai": "^4.0.0",
+    "ai": "^5.0.0",
+    "@ai-sdk/react": "^1.0.0",
     "react": ">=19.0.0",
     "react-dom": ">=19.0.0"
   },
@@ -73,6 +74,7 @@
     "react-markdown": "^9.0.1"
   },
   "devDependencies": {
+    "@ai-sdk/react": "^1.0.0",
     "@chromatic-com/storybook": "^3.2.2",
     "@eslint/js": "^9.32.0",
     "@storybook/addon-essentials": "^8.5.0",
@@ -91,7 +93,7 @@
     "@typescript-eslint/eslint-plugin": "^8.38.0",
     "@typescript-eslint/parser": "^8.38.0",
     "@vitejs/plugin-react": "^4.3.4",
-    "ai": "^4.0.47",
+    "ai": "^5.0.0",
     "esbuild": "^0.25.8",
     "eslint": "^9.32.0",
     "eslint-config-prettier": "^10.1.8",

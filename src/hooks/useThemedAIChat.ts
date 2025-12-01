@@ -1,6 +1,5 @@
-import { useChat } from 'ai/react';
+import { useChat, type Message } from '@ai-sdk/react';
 import { useState, useCallback, FormEvent, ChangeEvent } from 'react';
-import type { Message } from 'ai';
 import type { UseThemedAIChatOptions, UseThemedAIChatReturn } from '../types';
 import { getAIChatThemeVariables } from '../utils/theme';
 
@@ -10,7 +9,7 @@ export function useThemedAIChat(options: UseThemedAIChatOptions): UseThemedAICha
     return useCustomHandlerChat(options);
   }
 
-  // Default behavior: use Vercel AI SDK's useChat
+  // Default behavior: use Vercel AI SDK's useChat (v5 API)
   const chat = useChat({
     api: typeof options.api === 'string' ? options.api : undefined,
     initialMessages: options.initialMessages,
@@ -24,7 +23,7 @@ export function useThemedAIChat(options: UseThemedAIChatOptions): UseThemedAICha
     input: chat.input,
     handleInputChange: chat.handleInputChange,
     handleSubmit: chat.handleSubmit,
-    isLoading: chat.isLoading,
+    isLoading: chat.status === 'streaming' || chat.status === 'submitted',
     error: chat.error,
     reload: chat.reload,
     stop: chat.stop,
@@ -40,7 +39,7 @@ function useCustomHandlerChat(options: UseThemedAIChatOptions): UseThemedAIChatR
   const { customHandler } = options;
   const [input, setInput] = useState('');
 
-  // Convert custom handler messages to AI SDK Message format
+  // Convert custom handler messages to @ai-sdk/react Message format
   const messages: Message[] = (customHandler?.messages || []).map((msg) => ({
     id: msg.id,
     role: msg.role,

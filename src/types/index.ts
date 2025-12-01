@@ -2,12 +2,12 @@
  * Type definitions for @principal-ade/industry-themed-ai-sdk
  */
 
-import type { Message } from 'ai';
+import type { Message } from '@ai-sdk/react';
 import type { Theme } from '@principal-ade/industry-theme';
 import type { CSSProperties, ReactNode, ChangeEvent, FormEvent } from 'react';
 
-// AI SDK re-exports
-export type { Message } from 'ai';
+// AI SDK re-exports - using Message from @ai-sdk/react which has content: string
+export type { Message } from '@ai-sdk/react';
 
 // Theme types
 export interface AIChatThemeVariables extends CSSProperties {
