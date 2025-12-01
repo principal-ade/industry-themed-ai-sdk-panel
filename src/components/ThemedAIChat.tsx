@@ -86,15 +86,7 @@ export const ThemedAIChat: React.FC<ThemedAIChatProps> = ({
         </div>
       )}
 
-      <ChatMessageList messages={chat.messages} theme={theme} />
-
-      {chat.isLoading && (
-        <div className="chat-loading">
-          <div className="chat-loading-dot" />
-          <div className="chat-loading-dot" />
-          <div className="chat-loading-dot" />
-        </div>
-      )}
+      <ChatMessageList messages={chat.messages} theme={theme} isLoading={chat.isLoading} />
 
       {chat.error && (
         <div className="chat-error">

@@ -3,15 +3,15 @@ import { MessageSquare } from 'lucide-react';
 import type { ChatMessageListProps } from '../types';
 import { ChatMessage } from './ChatMessage';
 
-export const ChatMessageList: React.FC<ChatMessageListProps> = ({ messages, theme }) => {
+export const ChatMessageList: React.FC<ChatMessageListProps> = ({ messages, theme, isLoading }) => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto-scroll to bottom when new messages arrive
+  // Auto-scroll to bottom when new messages arrive or loading state changes
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
-  }, [messages]);
+  }, [messages, isLoading]);
 
-  if (messages.length === 0) {
+  if (messages.length === 0 && !isLoading) {
     return (
       <div className="chat-message-list">
         <div className="chat-empty-state">
@@ -32,6 +32,20 @@ export const ChatMessageList: React.FC<ChatMessageListProps> = ({ messages, them
       {messages.map((message, index) => (
         <ChatMessage key={message.id || index} message={message} theme={theme} />
       ))}
+      {isLoading && (
+        <div className="chat-message" data-role="assistant">
+          <div className="message-header">
+            <span className="message-role">assistant</span>
+          </div>
+          <div className="message-content">
+            <div className="chat-loading">
+              <div className="chat-loading-dot" />
+              <div className="chat-loading-dot" />
+              <div className="chat-loading-dot" />
+            </div>
+          </div>
+        </div>
+      )}
       <div ref={messagesEndRef} />
     </div>
   );

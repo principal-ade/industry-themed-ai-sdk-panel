@@ -51,6 +51,7 @@ export interface ThemedAIChatPanelWithProviderProps extends ThemedAIChatPanelPro
 export interface ChatMessageListProps {
   messages: Message[];
   theme: Theme;
+  isLoading?: boolean;
 }
 
 export interface ChatMessageProps {
