@@ -38,6 +38,12 @@ const ChevronLeftIcon = ({ size = 16 }: { size?: number }) => (
   </svg>
 );
 
+const PlusIcon = ({ size = 16 }: { size?: number }) => (
+  <svg width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+    <path d="M12 5v14M5 12h14" />
+  </svg>
+);
+
 const STORAGE_KEY_PROVIDER = 'ai-chat-provider';
 const STORAGE_KEY_MODEL = 'ai-chat-local-model';
 
@@ -575,6 +581,14 @@ export function AIChatPanel({
                 </>
               )}
             </span>
+          </button>
+          <button
+            onClick={() => customHandler?.clearMessages?.()}
+            style={{ ...styles.headerButton, color: theme.colors.textMuted }}
+            title="New conversation"
+          >
+            <PlusIcon size={14} />
+            <span>New</span>
           </button>
         </div>
 
